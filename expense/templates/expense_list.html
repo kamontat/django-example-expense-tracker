@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<span>Count: {{ count }} Sum: {{ sum }}</span>
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Description</th>
+      <th>Category</th>
+      <th>Amount</th>
+      <th>Action</th>
+    </tr>
+    {% for expense in object_list %}
+    <tr>
+      <td>{{ expense.date }}</td>
+      <td>{{ expense.description }}</td>
+      <td>{{ expense.get_category }}</td>
+      <td>{{ expense.amount }}</td>
+      <td>
+        <a href="{% url 'edit' expense.id %}">Edit</a> & <a href="{% url 'delete' expense.id %}">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}  
+  </table>
+
+  <a href="{% url 'add' %}">Add new expense</a>
+{% endblock %}
